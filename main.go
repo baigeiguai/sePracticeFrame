@@ -1,18 +1,27 @@
 package main
 
 import (
-	"net/http"
+	"fmt"
+	"os"
+	"sePracticeFrame/dao"
+	"sePracticeFrame/settings"
 
-	"github.com/gin-gonic/gin"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 func main() {
-	r := gin.Default()
-	r.Static("/static","static")
-	r.LoadHTMLGlob("templates/*")
-	
-	r.GET("/",func (c *gin.Context)  {
-		c.HTML(http.StatusOK,"index.html",nil)
-	})
-	r.Run(":9090")
+	if len(os.Args) < 2 {
+		fmt.Println("Usage ./main conf/config.ini")
+		return
+	}
+	if err := settings.Init(os.Args[1]); err != nil {
+		fmt.Printf("load config from file failed,err:%v\n", err)
+	}
+	err := dao.InitMySQL(settings.Conf.MySQLConfig)
+	if err != nil {
+		fmt.Println("fail to init MySQL...")
+		return
+	}
+	// defer dao.MySQLClose()
+	// dao.DB.AutoMigrate(&models.User{})
 }
