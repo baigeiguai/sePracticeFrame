@@ -23,7 +23,7 @@ func RegisterUser(user *User) (state types.RegisterMessage) {
 	if ExistUser(user) {
 		return types.RegisterNameExisted
 	}
-	user.Username = utils.Convert(user.Username)
+	user.Password = utils.Convert(user.Password)
 	err := dao.DB.Create(user).Error
 	if err != nil {
 		return types.RegisterError
