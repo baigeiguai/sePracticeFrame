@@ -1,6 +1,7 @@
 package routers
 
 import (
+	middlewares "sePracticeFrame/MiddleWares"
 	"sePracticeFrame/controller"
 	"sePracticeFrame/settings"
 
@@ -16,9 +17,10 @@ func SetupRouters() (r *gin.Engine) {
 	r.LoadHTMLGlob("templates/*")
 	r.GET("/", controller.IndexHandler)
 	userGroup := r.Group("user")
+	userGroup.Use(middlewares.Cores())
 	{
 		userGroup.POST("/register", controller.UserRigersterHandler)
-		userGroup.POST("/login",controller.UserLoginHandler)
+		userGroup.POST("/login", controller.UserLoginHandler)
 	}
 	return
 }
