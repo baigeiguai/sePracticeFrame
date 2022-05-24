@@ -20,14 +20,14 @@ func SetupRouters() (r *gin.Engine) {
 	userGroup := r.Group("user")
 	// userGroup.Use(middlewares.Cores())
 	{
-		userGroup.POST("/register", controller.UserRigersterHandler)
-		userGroup.POST("/login", controller.UserLoginHandler)
-		userGroup.OPTIONS("/register", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, nil)
-		})
-		userGroup.OPTIONS("/login", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, nil)
-		})
+		userGroup.GET("/register", controller.UserRigersterHandler)
+		userGroup.GET("/login", controller.UserLoginHandler)
+		// userGroup.OPTIONS("/register", func(ctx *gin.Context) {
+		// 	ctx.JSON(http.StatusOK, nil)
+		// })
+		// userGroup.OPTIONS("/login", func(ctx *gin.Context) {
+		// 	ctx.JSON(http.StatusOK, nil)
+		// })
 	}
 	return
 }
