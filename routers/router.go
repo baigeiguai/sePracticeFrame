@@ -1,7 +1,6 @@
 package routers
 
 import (
-	"net/http"
 	"sePracticeFrame/controller"
 	"sePracticeFrame/settings"
 
