@@ -1,6 +1,7 @@
 package routers
 
 import (
+	middlewares "sePracticeFrame/MiddleWares"
 	"sePracticeFrame/controller"
 	"sePracticeFrame/settings"
 
@@ -12,7 +13,7 @@ func SetupRouters() (r *gin.Engine) {
 		gin.SetMode(gin.ReleaseMode)
 	}
 	r = gin.Default()
-	// r.Use(middlewares.Cores())
+	r.Use(middlewares.Cores())
 	r.Static("/static", "static")
 	r.LoadHTMLGlob("templates/*")
 	r.GET("/", controller.IndexHandler)
