@@ -1,7 +1,6 @@
 package routers
 
 import (
-	middlewares "sePracticeFrame/MiddleWares"
 	"sePracticeFrame/controller"
 	"sePracticeFrame/settings"
 
