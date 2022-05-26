@@ -5,7 +5,6 @@ import (
 	"sePracticeFrame/dao"
 	"sePracticeFrame/types"
 	"sePracticeFrame/utils"
-
 	"gorm.io/gorm"
 )
 
@@ -39,7 +38,7 @@ func ExistUser(user *User) bool {
 }
 
 func LoginUser(user *User) (state types.LoginMessage) {
-	var t User
+	var t User=User{}
 	err := dao.DB.Where("username = ?", user.Username).First(&t)
 	if errors.Is(err.Error, gorm.ErrRecordNotFound) {
 		return types.LoginNameNotExist
