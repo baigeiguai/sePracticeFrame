@@ -12,7 +12,7 @@ func IndexHandler(c *gin.Context) {
 }
 
 func UserRigersterHandler(c *gin.Context) {
-	var user models.User
+	var user models.User= models.User{}
 	c.BindJSON(&user)
 	registerState := models.RegisterUser(&user)
 	c.JSON(http.StatusOK, gin.H{
@@ -21,8 +21,8 @@ func UserRigersterHandler(c *gin.Context) {
 	})
 }
 func UserLoginHandler(c *gin.Context) {
-	var user models.User
-	c.Bind((&user))
+	var user models.User=models.User{}
+	c.BindJSON((&user))
 	loginState := models.LoginUser(&user)
 	c.JSON(http.StatusOK,gin.H{
 		"status":loginState,
