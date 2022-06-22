@@ -15,6 +15,7 @@ func SetupRouters() (r *gin.Engine) {
 	r = gin.Default()
 	r.Use(middlewares.Cores())
 	r.Static("/static", "static")
+	r.Static("/","favicon.ico")
 	r.LoadHTMLGlob("templates/*")
 	r.GET("/", controller.IndexHandler)
 	userGroup := r.Group("user")
